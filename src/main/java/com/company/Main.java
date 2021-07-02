@@ -1,11 +1,16 @@
 package com.company;
 
+import com.reflectionexample.Book;
+import com.reflectionexample.MyBook;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.ClassFileLocator;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.pool.TypePool;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static net.bytebuddy.matcher.ElementMatchers.named;
@@ -44,8 +49,52 @@ public class Main {
 //        }
 
 
-        System.out.println(new Moja().pullOut());
-        System.out.println("test");
+//        System.out.println(new Moja().pullOut());
+//        System.out.println("test");
+
+
+
+//        리플렉션
+
+        Class<Book> bookClass = Book.class;
+
+        Book book = new Book();
+        Class<? extends Book> aClass = book.getClass();
+
+        try {
+            Class<?> bClass = Class.forName("com.reflectionexample.Book");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("=============================");
+        //public field 출력
+        Arrays.stream(bookClass.getFields()).forEach(System.out::println);
+
+        System.out.println("=============================");
+        //모든 field 출력
+        Arrays.stream(bookClass.getDeclaredFields()).forEach(System.out::println);
+
+        System.out.println("=============================");
+        //Interface 출력
+        Arrays.stream(MyBook.class.getInterfaces()).forEach(System.out::println);
+
+        System.out.println("=============================");
+        //super class
+        System.out.println(MyBook.class.getSuperclass());
+
+        System.out.println("=============================");
+        //Constructor
+        Arrays.stream(bookClass.getDeclaredConstructors()).forEach(System.out::println);
+
+        System.out.println("=============================");
+        //Modifier
+        Arrays.stream(Book.class.getDeclaredFields()).forEach(f ->{
+            int modifiers = f.getModifiers();
+            System.out.println(f);
+            System.out.println(Modifier.isPrivate(modifiers));
+            System.out.println(Modifier.isStatic(modifiers));
+        });
 
 
     }

@@ -94,6 +94,7 @@ public class Main {
             System.out.println(f);
             System.out.println(Modifier.isPrivate(modifiers));
             System.out.println(Modifier.isStatic(modifiers));
+            System.out.println(Modifier.isPublic(modifiers));
         });
 
 

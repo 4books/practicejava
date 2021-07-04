@@ -2,6 +2,7 @@ package com.company;
 
 import com.reflectionexample.Book;
 import com.reflectionexample.MyBook;
+import com.sampleannotation.MyAnnotation;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.ClassFileLocator;
 import net.bytebuddy.implementation.FixedValue;
@@ -95,6 +96,16 @@ public class Main {
             System.out.println(Modifier.isPrivate(modifiers));
             System.out.println(Modifier.isStatic(modifiers));
             System.out.println(Modifier.isPublic(modifiers));
+        });
+
+        Arrays.stream(Book.class.getDeclaredFields()).forEach(f ->{
+            Arrays.stream(f.getAnnotations()).forEach(a ->{
+                if(a instanceof MyAnnotation){
+                    MyAnnotation myAnnotation = (MyAnnotation)a;
+                    System.out.println(myAnnotation.name());
+                    System.out.println(myAnnotation.number());
+                }
+            });
         });
 
 

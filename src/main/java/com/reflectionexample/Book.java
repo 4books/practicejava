@@ -1,9 +1,13 @@
 package com.reflectionexample;
 
+import com.sampleannotation.MyAnnotation;
+
+@MyAnnotation(test = "test")
 public class Book {
     private static String b = "Book B";
     private static final String c = "Book C";
 
+    @MyAnnotation(test = "test")
     private String a = "Book A";
     public String d = "Book D";
     protected String e = "Book E";

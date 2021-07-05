@@ -28,6 +28,8 @@ public class Main2 {
         int invoke = (int)d.invoke(book, 1, 2);
         System.out.println(invoke);
 
+        System.out.println("test");
+
 
     }
 }

@@ -14,7 +14,7 @@ public class Book {
     }
 
 
-    public void c() {
+    private void c() {
         System.out.println("C");
     }
 

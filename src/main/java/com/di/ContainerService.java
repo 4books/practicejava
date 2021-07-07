@@ -26,7 +26,6 @@ public class ContainerService {
         try {
             return classType.getConstructor(null).newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            e.
             throw new RuntimeException(e);
         }
     }
